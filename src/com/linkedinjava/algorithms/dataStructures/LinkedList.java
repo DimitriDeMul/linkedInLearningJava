@@ -1,23 +1,19 @@
 package com.linkedinjava.algorithms.dataStructures;
 
-public class LinkedList {
-    private LinkedListNode head;
+public class LinkedList<T> {
+    private LinkedListNode<T> head;
     private int count;
 
-    public LinkedList(int val) {
-        this.head = createNode(val);
+    public LinkedList(T val) {
+        this.head = new LinkedListNode<>(val);
         this.count = 1;
     }
 
-    public static LinkedListNode createNode(int val){
-        return new LinkedListNode(val);
-    }
-
-    public LinkedListNode getHead() {
+    public LinkedListNode<T> getHead() {
         return head;
     }
 
-    public void setHead(LinkedListNode head) {
+    public void setHead(LinkedListNode<T> head) {
         this.head = head;
     }
 
@@ -29,18 +25,18 @@ public class LinkedList {
         this.count = count;
     }
 
-    public void add(LinkedListNode node){
+    public void add(LinkedListNode<T> node){
         node.setNext(this.getHead());
         this.setHead(node);
         this.setCount(this.count + 1);
     }
 
-    public int addAtIndex(LinkedListNode node, int index){
+    public int addAtIndex(LinkedListNode<T> node, int index){
         if(index > this.count+1){
             return -1;
         }
         else{
-            LinkedListNode dummy = createNode(-1);
+            LinkedListNode<T> dummy = new LinkedListNode<>();
             dummy.setNext(this.head);
             while(dummy.getNext() != null && index > 1){
                 dummy = dummy.getNext();
@@ -68,7 +64,7 @@ public class LinkedList {
             this.setHead(this.head.getNext());
         }
         else{
-            LinkedListNode dummy = createNode(-1);
+            LinkedListNode<T> dummy = new LinkedListNode<>();
             dummy.setNext(this.head);
             while(dummy.getNext() != null && index > 1){
                 dummy = dummy.getNext();
@@ -81,15 +77,15 @@ public class LinkedList {
         return deletedNode;
     }
 
-    public LinkedListNode delete(LinkedListNode node){
+    public LinkedListNode delete(LinkedListNode<T> node){
         int index = find(node);
         if(index == -1)
             return null;
         return deleteAt(index);
     }
 
-    public int find(LinkedListNode node){
-        LinkedListNode dummy = this.head;
+    public int find(LinkedListNode<T> node){
+        LinkedListNode<T> dummy = this.head;
         int index = 1;
 
         while(dummy != null){
@@ -112,7 +108,7 @@ public class LinkedList {
             return this.getHead();
         }
         else {
-            LinkedListNode dummy = createNode(-1);
+            LinkedListNode<T> dummy = new LinkedListNode<>();
             dummy.setNext(this.head);
             while (dummy.getNext() != null && index > 1) {
                 dummy = dummy.getNext();
@@ -126,9 +122,9 @@ public class LinkedList {
         if(this.head == null || this.head.getNext() == null){
             return head;
         }
-        LinkedListNode previous = null, current = this.head;
+        LinkedListNode<T> previous = null, current = this.head;
         while(current!= null){
-            LinkedListNode next = current.getNext();
+            LinkedListNode<T> next = current.getNext();
             current.setNext(previous);
             previous = current;
             current = next;
@@ -140,7 +136,7 @@ public class LinkedList {
     @Override
     public String toString(){
         StringBuilder sb = new StringBuilder();
-        LinkedListNode dummy = this.getHead();
+        LinkedListNode<T> dummy = this.getHead();
         if(this.getHead() == null){
             return sb.toString();
         }

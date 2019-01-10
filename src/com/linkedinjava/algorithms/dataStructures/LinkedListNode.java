@@ -1,31 +1,29 @@
 package com.linkedinjava.algorithms.dataStructures;
 
-public class LinkedListNode {
-    private int val;
-    private LinkedListNode next;
+public class LinkedListNode<T> {
+    private T val;
+    private LinkedListNode<T> next;
 
-    public LinkedListNode(int val){
+    public LinkedListNode(){
+    }
+
+    public LinkedListNode(T val){
         this.val = val;
     }
 
-    public int getVal() {
+    public T getVal() {
         return val;
     }
 
-    public void setVal(int val) {
+    public void setVal(T val) {
         this.val = val;
     }
 
-    public LinkedListNode getNext() {
+    public LinkedListNode<T> getNext() {
         return next;
     }
 
-    public void setNext(LinkedListNode next) {
+    public void setNext(LinkedListNode<T> next) {
         this.next = next;
-    }
-
-    @Override
-    public String toString(){
-        return Integer.toString(this.val);
     }
 }
